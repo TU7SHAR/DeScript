@@ -1,38 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function Page() {
+  const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [apiId, setApiId] = useState("");
   const [apiHash, setApiHash] = useState("");
 
-  const handleGetOtp = async () => {
-    try {
-      const response = await fetch("/api/getOtp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phoneNumber }),
-      });
-      const data = await response.json();
-      console.log("Get OTP response:", data);
-    } catch (error) {
-      console.error("Error getting OTP:", error);
-    }
+  const handleGetOtp = async (event) => {
+    event.preventDefault();
+    await fetch("/api/getotp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+        apiId: apiId,
+        apiHash: apiHash,
+      }),
+    });
   };
 
-  const handleStart = async () => {
-    try {
-      const response = await fetch("/api/start", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phoneNumber, otp, apiId, apiHash }),
-      });
-      const data = await response.json();
-      console.log("Start response:", data);
-    } catch (error) {
-      console.error("Error starting process:", error);
+  const handleStart = async (event) => {
+    event.preventDefault();
+    const res = await fetch("/api/start", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        phoneNumber: phoneNumber,
+        apiId: apiId,
+        apiHash: apiHash,
+        otp: otp,
+      }),
+    });
+    const data = await res.json();
+    const out = data.output;
+    if (res.status === 200) {
+      router.push(`/Telegram/Success?out=${encodeURIComponent(out)}`);
+    } else {
+      console.error("Failed to start process:", data.msg);
     }
   };
 
@@ -58,12 +67,12 @@ function Page() {
       <div className="mb-4">
         <label
           className="block text-gray-600 text-sm font-bold mb-2"
-          htmlFor="apihash"
+          htmlFor="api-hash"
         >
           API Hash
         </label>
         <input
-          id="apihash"
+          id="api-hash"
           type="text"
           placeholder="Get your API hash from https://my.telegram.org/apps"
           className="w-full no-spinner px-3 py-2 bg-gray-600 rounded-md focus:outline-none focus:ring-0 focus:transparent"
@@ -74,12 +83,12 @@ function Page() {
       <div className="mb-4">
         <label
           className="block text-gray-600 text-sm font-bold mb-2"
-          htmlFor="apiid"
+          htmlFor="api-id"
         >
           API ID
         </label>
         <input
-          id="apiid"
+          id="api-id"
           type="text"
           placeholder="Get your API ID from https://my.telegram.org/apps"
           className="w-full no-spinner px-3 py-2 bg-gray-600 rounded-md focus:outline-none focus:ring-0 focus:transparent"
@@ -116,6 +125,100 @@ function Page() {
         >
           Start
         </button>
+      </div>
+      <div className="p-4 mt-4 text-white rounded-lg">
+        <h2 className="text-xl font-bold mb-4">How to Use the Script ?</h2>
+
+        <h3 className="text-lg font-semibold mb-2">GetOTP Button</h3>
+        <p className="mb-2">
+          <strong>Purpose:</strong> This button is used to request an OTP (One
+          Time Password) for authentication.
+        </p>
+        <div className="mb-4">
+          <strong>Usage:</strong>
+          <ul className="list-disc list-inside ml-4">
+            <li className="mb-1">
+              Fill in the required fields:
+              <ul className="list-disc list-inside ml-4">
+                <li>
+                  <strong>
+                    Phone Number with country code such as +910000000000
+                  </strong>
+                </li>
+                <li>
+                  <strong>API ID</strong>
+                </li>
+                <li>
+                  <strong>API Hash</strong>
+                </li>
+                <li>
+                  <strong className="text-yellow-300">
+                    *Note: You can get your API ID and API Hash from this site{" "}
+                    <Link
+                      rel="stylesheet"
+                      className="bold italic underline"
+                      href="https://my.telegram.org/apps"
+                    >
+                      https://my.telegram.org/apps
+                    </Link>
+                  </strong>
+                </li>
+              </ul>
+            </li>
+            <li className="mb-1">
+              Click the <strong>GetOTP</strong> button.
+            </li>
+            <li className="mb-1">An OTP will be sent to your phone number.</li>
+          </ul>
+        </div>
+
+        <h3 className="text-lg font-semibold mb-2">Start Button</h3>
+        <p className="mb-2">
+          <strong>Purpose:</strong> This button is used to start the process of
+          leaving Telegram channels/groups after entering the OTP.
+        </p>
+        <div>
+          <strong>Usage:</strong>
+          <ul className="list-disc list-inside ml-4">
+            <li className="mb-1">
+              Ensure you have received the OTP on your phone.
+            </li>
+            <li className="mb-1">
+              Fill in the required fields:
+              <ul className="list-disc list-inside ml-4">
+                <li>
+                  <strong>
+                    Phone Number with country code such as +910000000000
+                  </strong>
+                </li>
+                <li>
+                  <strong>API ID</strong>
+                </li>
+                <li>
+                  <strong>API Hash</strong>
+                </li>
+                <li>
+                  <strong>OTP</strong> (you received)
+                </li>
+              </ul>
+            </li>
+            <li className="mb-1">
+              Click the <strong>Start</strong> button.
+            </li>
+            <li className="mb-1">
+              The script will execute and start leaving the specified Telegram
+              channels/groups.
+            </li>
+            <li className="mb-1">
+              You will see the output indicating the success or failure of each
+              action and the count of groups successfully left.
+            </li>
+          </ul>
+        </div>
+        <h2 className="text-xl font-bold mb-4">
+          Here all the scripts and usage of code are public the scripts can be
+          found at github repo by the name of author TU7SHAR
+        </h2>
       </div>
     </div>
   );
