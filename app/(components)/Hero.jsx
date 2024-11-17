@@ -14,7 +14,7 @@ export default function Hero() {
             <p className="max-w-md mx-auto mt-3 text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
               Innovative technology to revolutionize industry standards,
               Available to all for free all scripts are readily available on
-              github acc:TU7SHAR
+              github acc - TU7SHAR
             </p>
             <div className="max-w-md mx-auto mt-5 sm:flex sm:justify-center md:mt-8">
               <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">

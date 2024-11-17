@@ -6,7 +6,7 @@ const UnderDevelopment = () => {
       <div className=" p-8 bg-gray-900 rounded-lg shadow-lg text-center">
         <h1 className="text-3xl font-bold mb-4">Page Under Development</h1>
         <p className="text-gray-700 mb-4">
-          We're working hard to bring this page to you soon. Stay tuned!
+          We&apos;re working hard to bring this page to you soon. Stay tuned!
         </p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
