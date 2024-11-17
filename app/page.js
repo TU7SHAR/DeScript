@@ -1,5 +1,4 @@
 import Hero from "./(components)/Hero";
-import UnderDevelopment from "./(components)/UnderDevelopment";
 
 export default function Home() {
   return (
