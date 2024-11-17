@@ -43,7 +43,7 @@ const Navbar = () => {
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
               <Link className="text-white font-bold text-xl" href="/">
-                DESCRIPT
+                DESCRIPTE
               </Link>
             </div>
             <div className="hidden sm:block sm:ml-6">

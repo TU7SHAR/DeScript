@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "DeScript",
+  title: "DeScripte",
   description: "Scripts for All ",
 };
 
