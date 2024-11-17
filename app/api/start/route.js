@@ -1,6 +1,7 @@
 import { exec } from "child_process";
 import { NextResponse } from "next/server";
 import util from "util";
+import path from "path";
 
 const execPromise = util.promisify(exec);
 
@@ -18,7 +19,7 @@ export async function POST(req) {
     // Command to execute the Python script
     //  C:/Users/gauta/Desktop/n/descriptor/app/api/scriptstart.py
     const pythonPath = path.resolve("./myenv/Scripts/python");
-    const pypath = path.resolve("./app/api/script.py");
+    const pypath = path.resolve("./app/api/scriptstart.py");
     const command = `${pythonPath} ${pypath} ${apiId} ${apiHash} ${phoneNumber} ${otp}`;
 
     // Execute the Python script

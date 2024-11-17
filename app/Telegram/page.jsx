@@ -128,7 +128,6 @@ function Page() {
       </div>
       <div className="p-4 mt-4 text-white rounded-lg">
         <h2 className="text-xl font-bold mb-4">How to Use the Script ?</h2>
-
         <h3 className="text-lg font-semibold mb-2">GetOTP Button</h3>
         <p className="mb-2">
           <strong>Purpose:</strong> This button is used to request an OTP (One
@@ -145,24 +144,25 @@ function Page() {
                     Phone Number with country code such as +910000000000
                   </strong>
                 </li>
+                <strong className=" text-sm text-yellow-300">
+                  *Note: You can get your API ID and API Hash from this site{" "}
+                  <Link
+                    rel="stylesheet"
+                    className="bold italic underline"
+                    href="https://my.telegram.org/apps"
+                  >
+                    https://my.telegram.org/apps
+                  </Link>
+                </strong>
                 <li>
                   <strong>API ID</strong>
                 </li>
                 <li>
                   <strong>API Hash</strong>
                 </li>
-                <li>
-                  <strong className="text-yellow-300">
-                    *Note: You can get your API ID and API Hash from this site{" "}
-                    <Link
-                      rel="stylesheet"
-                      className="bold italic underline"
-                      href="https://my.telegram.org/apps"
-                    >
-                      https://my.telegram.org/apps
-                    </Link>
-                  </strong>
-                </li>
+                <strong className="text-yellow-300 text-sm">
+                  *Note u will have to disable two step verification if enabled{" "}
+                </strong>
               </ul>
             </li>
             <li className="mb-1">

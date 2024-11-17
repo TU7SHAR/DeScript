@@ -57,5 +57,5 @@ if not found_groups_or_channels:
     print("You are not a member of any groups or channels.")
 
 print(output)
-client.disconnect()
 client.log_out()
+client.disconnect()

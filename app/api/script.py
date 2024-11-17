@@ -16,5 +16,4 @@ phone = args.phone
 
 client = TelegramClient('session_1', api_id, api_hash)
 client.start(phone)
-client.disconnect()
 

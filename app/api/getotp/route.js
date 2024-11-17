@@ -20,7 +20,6 @@ export async function POST(req) {
     //C:/Users/gauta/Desktop/n/descriptor
     const pythonPath = path.resolve("./myenv/Scripts/python");
     const pypath = path.resolve("./app/api/script.py");
-    console.log(pypath);
     const command = `${pythonPath} ${pypath} ${apiId} ${apiHash} ${phoneNumber}`;
 
     // Execute the Python script

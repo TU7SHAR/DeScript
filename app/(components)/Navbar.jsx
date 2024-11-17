@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon, BellIcon } from "@heroicons/react/24/outline";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [notifications, setNotifications] = useState([
-    "No New Notification Yet!",
+    "Guess what u got free Repo ",
   ]);
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -54,24 +54,14 @@ const Navbar = () => {
                 >
                   Home
                 </Link>
-                <Link
-                  href="/Docs"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Docs
-                </Link>
+
                 <Link
                   href="/Telegram"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Telegram Script
                 </Link>
-                <Link
-                  href="https://tushargautamportfolio.vercel.app/Projects"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Projects
-                </Link>
+
                 <Link
                   href="https://tushargautamportfolio.vercel.app/About"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -95,6 +85,13 @@ const Navbar = () => {
                   notifications.map((notification, index) => (
                     <div key={index} className="px-4 py-2 ">
                       {notification}
+                      <Link
+                        className="text-yellow-300 underline"
+                        href="https://github.com/TU7SHAR/Telegram-Scripts"
+                        target="_blank"
+                      >
+                        Link!
+                      </Link>
                     </div>
                   ))
                 ) : (
